@@ -1,0 +1,25 @@
+import mongoose, { Document, Types } from "mongoose";
+
+
+interface IFamily extends Document {
+	_id: Types.ObjectId
+	name: string
+	user_id: Types.ObjectId;
+}
+
+
+const familySchema = new mongoose.Schema({
+	name: {
+		type: String, required: true
+	},
+	user_id: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		required: true
+	},
+})
+
+
+export const Family = mongoose.model<IFamily>('Family', familySchema);
+
+
