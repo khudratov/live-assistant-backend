@@ -21,6 +21,6 @@ const walletSchema = new mongoose.Schema({
 })
 
 
-export const Family = mongoose.model<IWallet>('Wallet', walletSchema);
+export const Wallet = mongoose.model<IWallet>('Wallet', walletSchema);
 
 

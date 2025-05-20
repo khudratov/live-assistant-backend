@@ -6,6 +6,7 @@ import familyRoutes from "./routes/family.routes";
 import { protectMiddleware } from "./middlewares/auth.middleware";
 import familyMemberRoutes from "./routes/family-member.routes";
 import userRoutes from "./routes/user.routes";
+import walletRouter from "./routes/wallet.router";
 
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/families', protectMiddleware, familyRoutes);
 app.use('/api/family-members', protectMiddleware, familyMemberRoutes);
 app.use('/api/users', protectMiddleware, userRoutes);
+app.use('/api/wallets', protectMiddleware, walletRouter);
 
 mongoose.connect(MONGODB_URI).then(() => {
 	console.log('MongoDB connected');
