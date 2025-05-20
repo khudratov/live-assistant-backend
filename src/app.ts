@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes';
 import familyRoutes from "./routes/family.routes";
 import { protectMiddleware } from "./middlewares/auth.middleware";
+import familyMemberRoutes from "./routes/family-member.routes";
 
 dotenv.config();
 const app = express();
@@ -13,6 +14,7 @@ const PORT = process.env.PORT!;
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/families', protectMiddleware, familyRoutes);
+app.use('/api/family-members', protectMiddleware, familyMemberRoutes);
 
 mongoose.connect(MONGODB_URI).then(() => {
 	console.log('MongoDB connected');
