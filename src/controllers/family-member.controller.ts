@@ -3,8 +3,8 @@ import * as familyMemberService from '../services/family-member.service';
 
 
 export const create = async (req: Request, res: Response) => {
-	const {user_id, family_id, first_name, last_name} = req.body;
-	const familyMember = await familyMemberService.createFamilyMember({user_id, family_id, first_name, last_name});
+	const {user, family, first_name, last_name} = req.body;
+	const familyMember = await familyMemberService.createFamilyMember({user, family, first_name, last_name});
 	res.status(201).json(familyMember);
 };
 

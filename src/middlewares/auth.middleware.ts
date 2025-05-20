@@ -1,5 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+
 
 export const protectMiddleware = (req: Request, res: Response, next: NextFunction) => {
 	const auth = req.headers.authorization;
@@ -13,6 +14,6 @@ export const protectMiddleware = (req: Request, res: Response, next: NextFunctio
 		(req as any).user = decoded;
 		next();
 	} catch {
-		res.status(401).json({ message: 'Invalid token' });
+		res.status(401).json({message: 'Invalid token'});
 	}
 };

@@ -1,6 +1,7 @@
 import mongoose, { Document, Types } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
+
 export interface IUser extends Document {
 	_id: Types.ObjectId;
 	email: string;
@@ -8,9 +9,10 @@ export interface IUser extends Document {
 	comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
+
 const userSchema = new mongoose.Schema<IUser>({
-	email: { type: String, required: true, unique: true },
-	password: { type: String, required: true },
+	email: {type: String, required: true, unique: true},
+	password: {type: String, required: true},
 });
 
 userSchema.pre('save', async function () {

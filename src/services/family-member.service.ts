@@ -2,8 +2,8 @@ import { FamilyMember } from '../models/family-member.model';
 
 
 export const createFamilyMember = async (data: {
-	user_id: string;
-	family_id: string,
+	user: string;
+	family: string,
 	first_name: string,
 	last_name: string
 }) => {
@@ -11,13 +11,13 @@ export const createFamilyMember = async (data: {
 };
 
 export const getAllFamilyMembers = async () => {
-	return await FamilyMember.find().populate('user_id').populate('family_id');
+	return FamilyMember.find();
 };
 
 export const getFamilyMemberById = async (id: string) => {
-	return await FamilyMember.findById(id).populate('user_id').populate('family_id');
+	return FamilyMember.findById(id).populate('user').populate('family');
 };
 
 export const deleteFamilyMember = async (id: string) => {
-	return await FamilyMember.findByIdAndDelete(id);
+	return FamilyMember.findByIdAndDelete(id);
 };
