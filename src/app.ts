@@ -1,6 +1,7 @@
+import './config'
+
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes';
 import familyRoutes from "./routes/family.routes";
 import { protectMiddleware } from "./middlewares/auth.middleware";
@@ -13,7 +14,6 @@ import userRoutes from "./routes/user.route";
 import userExpenseRoutes from "./routes/userExpense.routes";
 
 
-dotenv.config();
 const app = express();
 const MONGODB_URI = process.env.MONGODB_URI!;
 const PORT = process.env.PORT!;
@@ -30,7 +30,7 @@ app.use('/admin/wallets', protectMiddleware, walletRouter);
 app.use('/admin/expenses', expenseRoutes);
 
 mongoose.connect(MONGODB_URI).then(() => {
-	console.log('MongoDB connected');
+	console.log('MongoDB connected', MONGODB_URI);
 
 	app.listen(PORT, () => {
 		console.log('Server running on port', PORT);
